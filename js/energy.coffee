@@ -3,6 +3,8 @@ class window.Energy
     @items = {}
     @speed = 15
     @src = 'images/energy.png'
+    # 38 frames
+    # images/bottle/bottle_%i.png
     @height = 80
     @width = 20
   
