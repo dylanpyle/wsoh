@@ -4,18 +4,25 @@
     <title>WSOH game</title>
 
     <script type='text/javascript' src='js/jquery.js'></script>
-    <script type='text/javascript' src='js/canvas.js'></script>
+    <script type='text/javascript' src='js/beatdetektor.js'></script>
+    <script type='text/javascript' src='js/dsp.js'></script>
+
+    <script type='text/javascript' src='js/sound.js'></script>
     <script type='text/javascript' src='js/init.js'></script>
     <script type='text/javascript' src='js/clock.js'></script>
     <script type='text/javascript' src='js/guy.js'></script>
     <script type='text/javascript' src='js/effects.js'></script>
     <script type='text/javascript' src='js/energy.js'></script>
+    <script type='text/javascript' src='js/canvas.js'></script>
     <style> * { padding:0px; margin:0px; }</style>
   </head>
 
   <body>
     <canvas id='canvas' width=600 height=600 style='background-image:url(images/bg.png);background-repeat:repeat-x;background-position:10px 100%;background-color:#333'></canvas>
+    <audio controls=true src="test.ogg" id="sound"></audio>
+    <div id="strength"></div>
     <div id='score' style='background-color:blue'>100</div>
+
   </body>
 
 </html>
