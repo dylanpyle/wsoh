@@ -5,6 +5,7 @@ class window.Game
 
     @guy = new Guy()
     @energy = new Energy()
+    @sound = new Sound(document.getElementById('sound'))
 
     @fps = 0
 
@@ -29,10 +30,11 @@ class window.Game
   loop: ->
     @clear()
     @guy.loop()
+    @sound.loop()
     @energy.loop()
     @calculateFPS()
     $('title').text(@fps)
-    webkitRequestAnimationFrame(=>
+    mozRequestAnimationFrame(=>
       @loop()
     , @canvas)
     @backgroundPos = @timePos - 3
