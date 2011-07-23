@@ -12,10 +12,10 @@ class window.Game
     @backgroundPos = 0
     @lastFrame = +(new Date)
 
-    $('body').keydown((e) =>
-      @keysDown[e.keyCode + ''] = true
+    $(document).keydown((e) =>
+      @keysDown[e.keyCode] = true
     ).keyup((e) =>
-      @keysDown[e.keyCode + ''] = false
+      @keysDown[e.keyCode] = false
     )
     setTimeout(=> 
       @loop()
@@ -32,10 +32,10 @@ class window.Game
     @energy.loop()
     @calculateFPS()
     $('title').text(@fps)
-    webkitRequestAnimationFrame(=>
+    mozRequestAnimationFrame(=>
       @loop()
     , @canvas)
-    @backgroundPos = @timePos - 3
+    @backgroundPos = @backgroundPos - 3
     $('canvas').css('backgroundPosition', @backgroundPos+'px 100%')
    # $('canvas').css('backgroundColor', '#'+Math.floor(Math.random()*16777215).toString(16))
 
@@ -46,3 +46,8 @@ class window.Game
   updateScore: (score)->
     $('#score').html score
     $('#score').width(score * 5)
+    if(score > 80) then faceImg = 8 else faceImg = Math.round(score/10)
+    @guy.src = 'images/face/face_'+faceImg+'.png'
+
+  doBeat: ->
+    @energy.shoot()

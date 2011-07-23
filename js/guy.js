@@ -4,8 +4,8 @@
     function Guy() {
       this.x = 30;
       this.y = 30;
-      this.width = 20;
-      this.height = 80;
+      this.width = 113;
+      this.height = 220;
       this.src = 'images/guy.png';
       this.energy = 100;
       this.fallingAsleep = 0;
@@ -14,7 +14,7 @@
       this.fallingAsleep++;
       if (this.fallingAsleep >= 10) {
         if (Math.floor(Math.random() * 13) === 1) {
-          game.energy.shoot();
+          game.doBeat();
         }
         this.fallingAsleep = 0;
         this.energy -= 1;

@@ -2,8 +2,8 @@ class window.Guy
   constructor: ->
     @x = 30
     @y = 30
-    @width = 20
-    @height = 80
+    @width = 113
+    @height = 220
     @src = 'images/guy.png'
     @energy = 100
     @fallingAsleep = 0
@@ -12,7 +12,7 @@ class window.Guy
     @fallingAsleep++
     if @fallingAsleep >= 10
       if(Math.floor(Math.random()*13) == 1)
-        game.energy.shoot()
+        game.doBeat()
       @fallingAsleep = 0
       @energy -= 1
       game.updateScore(@energy)
