@@ -20,7 +20,7 @@ class window.Game
     setTimeout(=> 
       @loop()
     , 50)
-     
+    # s 
   calculateFPS: ->
     frame = +(new Date)  
     @fps = Math.floor(1000 / (frame - @lastFrame))
