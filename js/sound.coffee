@@ -1,10 +1,12 @@
-class window.Sound
+class window.SoundDetector
   constructor: (el) ->
+    @el = el
     el.ontimeupdate = =>
       el.addEventListener('MozAudioAvailable', (event) =>
         @audioAvailable(event)
       , false)
       el.ontimeupdate = null
+    @launchers = []
     
     @frameSize = 2048
     @bufferSize = @frameSize / 2
@@ -15,6 +17,9 @@ class window.Sound
     @vu = new BeatDetektor.modules.vis.VU()
     @ftimer = 0
     @strength = 0
+    @lastMag = 0
+    @lastSent = 0
+    @mag = 0
     @draw()
   
   audioAvailable: (event) ->
@@ -29,11 +34,17 @@ class window.Sound
       @ftimer = 0
   
   loop: ->
-    game.doBeat() if @strength > 40
+    5
 
   draw: ->
     if @vu.vu_levels.length
-      @strength = @vu.vu_levels[0] * 100
+      @mag = @vu.vu_levels[0] * 100
+      if (@mag > @lastMag * 1.2) and (+(new Date()) - @lastSent >= 500)
+        @lastSent = +(new Date())
+        @launchers.push @el.currentTime
+        game.doBeat()
+      @lastMag = @mag
+
     setTimeout(=>
       @draw()
     , 60)

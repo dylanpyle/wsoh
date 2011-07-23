@@ -1,13 +1,15 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-  window.Sound = (function() {
-    function Sound(el) {
+  window.SoundDetector = (function() {
+    function SoundDetector(el) {
+      this.el = el;
       el.ontimeupdate = __bind(function() {
         el.addEventListener('MozAudioAvailable', __bind(function(event) {
           return this.audioAvailable(event);
         }, this), false);
         return el.ontimeupdate = null;
       }, this);
+      this.launchers = [];
       this.frameSize = 2048;
       this.bufferSize = this.frameSize / 2;
       this.sampleRate = 44100;
@@ -17,9 +19,12 @@
       this.vu = new BeatDetektor.modules.vis.VU();
       this.ftimer = 0;
       this.strength = 0;
+      this.lastMag = 0;
+      this.lastSent = 0;
+      this.mag = 0;
       this.draw();
     }
-    Sound.prototype.audioAvailable = function(event) {
+    SoundDetector.prototype.audioAvailable = function(event) {
       var frameBuffer, timestamp;
       frameBuffer = event.frameBuffer;
       timestamp = event.time;
@@ -32,19 +37,23 @@
         return this.ftimer = 0;
       }
     };
-    Sound.prototype.loop = function() {
-      if (this.strength > 40) {
-        return game.doBeat();
-      }
+    SoundDetector.prototype.loop = function() {
+      return 5;
     };
-    Sound.prototype.draw = function() {
+    SoundDetector.prototype.draw = function() {
       if (this.vu.vu_levels.length) {
-        this.strength = this.vu.vu_levels[0] * 100;
+        this.mag = this.vu.vu_levels[0] * 100;
+        if ((this.mag > this.lastMag * 1.2) && (+(new Date()) - this.lastSent >= 500)) {
+          this.lastSent = +(new Date());
+          this.launchers.push(this.el.currentTime);
+          game.doBeat();
+        }
+        this.lastMag = this.mag;
       }
       return setTimeout(__bind(function() {
         return this.draw();
       }, this), 60);
     };
-    return Sound;
+    return SoundDetector;
   })();
 }).call(this);

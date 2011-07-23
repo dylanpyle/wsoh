@@ -11,8 +11,6 @@ class window.Guy
   loop: ->
     @fallingAsleep++
     if @fallingAsleep >= 10
-      if(Math.floor(Math.random()*13) == 1)
-        game.energy.shoot()
       @fallingAsleep = 0
       @energy -= 1
       game.updateScore(@energy)

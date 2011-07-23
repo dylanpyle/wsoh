@@ -6,7 +6,7 @@
       this.context = this.canvas.getContext('2d');
       this.guy = new Guy();
       this.energy = new Energy();
-      this.sound = new Sound(document.getElementById('sound'));
+      this.sound = new SoundDetector(document.getElementById('sound'));
       this.fps = 0;
       this.keysDown = {};
       this.backgroundPos = 0;

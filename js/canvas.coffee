@@ -5,7 +5,7 @@ class window.Game
 
     @guy = new Guy()
     @energy = new Energy()
-    @sound = new Sound(document.getElementById('sound'))
+    @sound = new SoundDetector(document.getElementById('sound'))
 
     @fps = 0
 
