@@ -11,18 +11,7 @@
     }
     Guy.prototype.loop = function() {
       this.checkKeys();
-      this.detectCollisions();
       return this.draw();
-    };
-    Guy.prototype.detectCollisions = function() {
-      var id, item, _len, _ref, _ref2, _ref3, _results;
-      _ref = game.energy.items;
-      _results = [];
-      for (item = 0, _len = _ref.length; item < _len; item++) {
-        id = _ref[item];
-        _results.push(((this.x < (_ref2 = item.x) && _ref2 < this.x + this.width)) && ((this.y < (_ref3 = item.y) && _ref3 < this.y + this.height)) ? (this.energy -= 5, delete game.energy.items[id]) : void 0);
-      }
-      return _results;
     };
     Guy.prototype.checkKeys = function() {
       var speed;
@@ -46,9 +35,7 @@
         img.src = this.src;
         return game.context.drawImage(img, this.x, this.y, this.width, this.height);
       }, this);
-      drawEnergy = __bind(function() {
-        return $('title').html("Energy: " + this.energy);
-      }, this);
+      drawEnergy = __bind(function() {}, this);
       drawGuy();
       return drawEnergy();
     };
