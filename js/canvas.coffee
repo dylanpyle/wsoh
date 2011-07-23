@@ -6,6 +6,7 @@ class window.Game
     @guy = new Guy()
     @energy = new Energy()
     @sound = new SoundDetector(document.getElementById('sound'))
+    @soundPlayer = new SoundPlayer(document.getElementById('audio'))
 
     @fps = 0
 
@@ -31,6 +32,7 @@ class window.Game
     @clear()
     @guy.loop()
     @sound.loop()
+    @soundPlayer.loop()
     @energy.loop()
     @calculateFPS()
     $('title').text(@fps)

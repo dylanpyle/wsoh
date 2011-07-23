@@ -7,6 +7,7 @@
       this.guy = new Guy();
       this.energy = new Energy();
       this.sound = new SoundDetector(document.getElementById('sound'));
+      this.soundPlayer = new SoundPlayer(document.getElementById('audio'));
       this.fps = 0;
       this.keysDown = {};
       this.backgroundPos = 0;
@@ -30,6 +31,7 @@
       this.clear();
       this.guy.loop();
       this.sound.loop();
+      this.soundPlayer.loop();
       this.energy.loop();
       this.calculateFPS();
       $('title').text(this.fps);

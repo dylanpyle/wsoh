@@ -5,6 +5,7 @@ class window.Energy
     @src = 'images/energy.png'
     # 38 frames
     # images/bottle/bottle_%i.png
+    @screenTime = 4000
     @height = 46
     @width = 22
   
@@ -31,17 +32,19 @@ class window.Energy
   
         
   draw: ->
+    totalWidth = game.canvas.width - 50
     for id, item of @items
       img = new Image()
       shadow = new Image()
       img.src = 'images/bottle/bottle_'+Math.round(item.frameCount / 2)+'.png'
       shadow.src = 'images/shadow.png'
+      item.x = totalWidth - (((+(new Date)-item.started)/(@screenTime+400)) * totalWidth)
       game.context.drawImage(img, item.x, item.y, @width, @height)
       game.context.drawImage(shadow, item.x, game.canvas.height - 30, 22, 3)
 
   shoot: ->
     @items[Math.floor(Math.random()*10000)] = {
-      x: game.canvas.width + 50
+      started: +(new Date())
       baseY: Math.random() * (game.canvas.height - 90) + 10
       frameCount: 1
     }

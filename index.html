@@ -11,6 +11,7 @@
     <script type='text/javascript' src='js/init.js'></script>
     <script type='text/javascript' src='js/clock.js'></script>
     <script type='text/javascript' src='js/guy.js'></script>
+    <script type='text/javascript' src='js/soundPlayer.js'></script>
     <script type='text/javascript' src='js/effects.js'></script>
     <script type='text/javascript' src='js/energy.js'></script>
     <script type='text/javascript' src='js/canvas.js'></script>
@@ -18,12 +19,10 @@
   </head>
 
   <body>
-<<<<<<< HEAD
-    <canvas id='canvas' width=600 height=600 style='background-image:url(images/bg.png);background-repeat:repeat-x;background-position:10px 100%;background-color:#333'></canvas>
-    Pre: <audio controls=true src="test.ogg" id="sound"></audio>
-    Now: <audio controls=true src="test.ogg" id="game"></audio>
-=======
-    <div style='width:0px;height:0px;'>
+    <canvas id='canvas' width=600 height=600 style='background-image:url(images/bg.gif);background-repeat:repeat;background-position:10px 100%;background-color:#333'></canvas>
+    Pre: <audio controls=true src="test.ogg" volume=0 id="sound"></audio>
+    Now: <audio controls=true src="test.ogg" id="audio"></audio>
+    <div style='display:none'>
       <img src='images/face/face_1.png' alt='face' />
       <img src='images/face/face_2.png' alt='face' />
       <img src='images/face/face_3.png' alt='face' />
@@ -33,9 +32,6 @@
       <img src='images/face/face_7.png' alt='face' />
       <img src='images/face/face_8.png' alt='face' />
     </div>
-    <canvas id='canvas' width=600 height=600 style='background-image:url(images/bg.gif);background-repeat:repeat;background-position:10px 100%;background-color:green'></canvas>
-    <audio controls=true src="test.ogg" id="sound"></audio>
->>>>>>> f275da20a451606cf2c47563f3c9a0b540eb253d
     <div id="strength"></div>
     <div id='score' style='background-color:blue'>100</div>
 

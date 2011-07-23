@@ -11,10 +11,10 @@ class window.Guy
   loop: ->
     @fallingAsleep++
     if @fallingAsleep >= 10
-      if(Math.floor(Math.random()*13) == 1)
-        game.doBeat()
+      #if(Math.floor(Math.random()*13) == 1)
+        #game.doBeat()
       @fallingAsleep = 0
-      @energy -= 1
+      #@energy -= 1
       game.updateScore(@energy)
     @checkKeys()
     @draw()

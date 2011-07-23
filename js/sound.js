@@ -41,12 +41,15 @@
       return 5;
     };
     SoundDetector.prototype.draw = function() {
+      var z;
       if (this.vu.vu_levels.length) {
-        this.mag = this.vu.vu_levels[0] * 100;
-        if ((this.mag > this.lastMag * 1.2) && (+(new Date()) - this.lastSent >= 500)) {
+        z = this.vu.vu_levels[0] * 100;
+        if (z > 0) {
+          this.mag = z;
+        }
+        if ((this.mag > this.lastMag * 3.5) && (+(new Date()) - this.lastSent >= 200)) {
           this.lastSent = +(new Date());
-          this.launchers.push(this.el.currentTime);
-          game.doBeat();
+          this.launchers.push(this.el.currentTime * 1000);
         }
         this.lastMag = this.mag;
       }

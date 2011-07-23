@@ -38,11 +38,11 @@ class window.SoundDetector
 
   draw: ->
     if @vu.vu_levels.length
-      @mag = @vu.vu_levels[0] * 100
-      if (@mag > @lastMag * 1.2) and (+(new Date()) - @lastSent >= 500)
+      z = @vu.vu_levels[0] * 100
+      @mag = z if z > 0
+      if (@mag > @lastMag * 3.5) and (+(new Date()) - @lastSent >= 200)
         @lastSent = +(new Date())
-        @launchers.push @el.currentTime
-        game.doBeat()
+        @launchers.push @el.currentTime * 1000
       @lastMag = @mag
 
     setTimeout(=>

@@ -13,11 +13,7 @@
     Guy.prototype.loop = function() {
       this.fallingAsleep++;
       if (this.fallingAsleep >= 10) {
-        if (Math.floor(Math.random() * 13) === 1) {
-          game.doBeat();
-        }
         this.fallingAsleep = 0;
-        this.energy -= 1;
         game.updateScore(this.energy);
       }
       this.checkKeys();
