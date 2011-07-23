@@ -41,7 +41,7 @@ class window.SoundDetector
       z = @vu.vu_levels[0] * 100
 
       @mag = z if z > 0
-      if (@mag > @lastMag * 3.5) and (+(new Date()) - @lastSent >= 200)
+      if (@mag > @lastMag * 3.5) and (+(new Date()) - @lastSent >= 60)
         @lastSent = +(new Date())
         @launchers.push(@el.currentTime * 1000) if @el.currentTime * 1000 > game.energy.screenTime
       @lastMag = @mag

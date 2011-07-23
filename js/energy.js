@@ -4,7 +4,7 @@
       this.items = {};
       this.speed = 7;
       this.src = 'images/energy.png';
-      this.screenTime = 2000;
+      this.screenTime = 3000;
       this.height = 46;
       this.width = 22;
     }
@@ -53,7 +53,7 @@
         shadow = new Image();
         img.src = 'images/bottle/bottle_' + Math.round(item.frameCount / 2) + '.png';
         shadow.src = 'images/shadow.png';
-        item.x = totalWidth - (((+(new Date) - item.started) / (this.screenTime + 200)) * totalWidth);
+        item.x = totalWidth - (((+(new Date) - item.started) / (this.screenTime + 300)) * totalWidth);
         game.context.drawImage(img, item.x, item.y, this.width, this.height);
         _results.push(game.context.drawImage(shadow, item.x, game.canvas.height - 30, 22, 3));
       }

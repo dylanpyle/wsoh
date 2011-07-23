@@ -5,7 +5,7 @@ class window.Energy
     @src = 'images/energy.png'
     # 38 frames
     # images/bottle/bottle_%i.png
-    @screenTime = 2000
+    @screenTime = 3000
     @height = 46
     @width = 22
   
@@ -39,7 +39,7 @@ class window.Energy
       shadow = new Image()
       img.src = 'images/bottle/bottle_'+Math.round(item.frameCount / 2)+'.png'
       shadow.src = 'images/shadow.png'
-      item.x = totalWidth - (((+(new Date)-item.started)/(@screenTime+200)) * totalWidth)
+      item.x = totalWidth - (((+(new Date)-item.started)/(@screenTime+300)) * totalWidth)
       game.context.drawImage(img, item.x, item.y, @width, @height)
       game.context.drawImage(shadow, item.x, game.canvas.height - 30, 22, 3)
 

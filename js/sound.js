@@ -47,7 +47,7 @@
         if (z > 0) {
           this.mag = z;
         }
-        if ((this.mag > this.lastMag * 3.5) && (+(new Date()) - this.lastSent >= 200)) {
+        if ((this.mag > this.lastMag * 3.5) && (+(new Date()) - this.lastSent >= 60)) {
           this.lastSent = +(new Date());
           if (this.el.currentTime * 1000 > game.energy.screenTime) {
             this.launchers.push(this.el.currentTime * 1000);
