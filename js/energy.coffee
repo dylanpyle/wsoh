@@ -16,7 +16,8 @@ class window.Energy
     totalFrames = 76 #76 opportunities to do cool things
     g = game.guy
     for id, item of @items
-
+      if item.x < 0
+        delete game.energy.items[id]
       halfX = item.x + @width / 2
       halfY = item.y + @height / 2
       item.frameCount++ 
