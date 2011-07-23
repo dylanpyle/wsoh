@@ -23,9 +23,9 @@ class window.SoundDetector
     @draw()
   
   audioAvailable: (event) ->
-    frameBuffer = event.frameBuffer
+    @frameBuffer = event.frameBuffer
     timestamp = event.time
-    @signal = DSP.getChannel(DSP.MIX, frameBuffer)
+    @signal = DSP.getChannel(DSP.MIX, @frameBuffer)
     @fft.forward(@signal)
     @bd.process timestamp, @fft.spectrum
     @ftimer += @bd.last_update;
@@ -39,10 +39,11 @@ class window.SoundDetector
   draw: ->
     if @vu.vu_levels.length
       z = @vu.vu_levels[0] * 100
+
       @mag = z if z > 0
       if (@mag > @lastMag * 3.5) and (+(new Date()) - @lastSent >= 200)
         @lastSent = +(new Date())
-        @launchers.push @el.currentTime * 1000
+        @launchers.push(@el.currentTime * 1000) if @el.currentTime * 1000 > game.energy.screenTime
       @lastMag = @mag
 
     setTimeout(=>

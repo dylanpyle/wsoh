@@ -34,12 +34,9 @@
       this.soundPlayer.loop();
       this.energy.loop();
       this.calculateFPS();
-      $('title').text(this.fps);
-      mozRequestAnimationFrame(__bind(function() {
+      return mozRequestAnimationFrame(__bind(function() {
         return this.loop();
       }, this), this.canvas);
-      this.backgroundPos = this.backgroundPos - 3;
-      return $('canvas').css('backgroundPosition', this.backgroundPos + 'px 100%');
     };
     Game.prototype.clear = function() {
       this.context.fillStyle = '#666';

@@ -5,7 +5,7 @@ class window.Energy
     @src = 'images/energy.png'
     # 38 frames
     # images/bottle/bottle_%i.png
-    @screenTime = 4000
+    @screenTime = 2000
     @height = 46
     @width = 22
   
@@ -26,6 +26,7 @@ class window.Energy
       if (halfX > g.x and halfX < (g.x + g.width)) and (halfY > g.y and halfY < (g.y + g.height))
         g.energy += 30
         game.updateScore(g.energy)
+        $(game.canvas).css('background-color', '#039C3B').animate({ backgroundColor: "#333333" }, 500);
         delete game.energy.items[id]
       item.x -= @speed
       item.y = item.baseY + Math.sin(((item.frameCount-(totalFrames/2))/totalFrames)*2*Math.PI)*30
@@ -38,7 +39,7 @@ class window.Energy
       shadow = new Image()
       img.src = 'images/bottle/bottle_'+Math.round(item.frameCount / 2)+'.png'
       shadow.src = 'images/shadow.png'
-      item.x = totalWidth - (((+(new Date)-item.started)/(@screenTime+400)) * totalWidth)
+      item.x = totalWidth - (((+(new Date)-item.started)/(@screenTime+200)) * totalWidth)
       game.context.drawImage(img, item.x, item.y, @width, @height)
       game.context.drawImage(shadow, item.x, game.canvas.height - 30, 22, 3)
 

@@ -35,12 +35,10 @@ class window.Game
     @soundPlayer.loop()
     @energy.loop()
     @calculateFPS()
-    $('title').text(@fps)
+    #$('title').text(@fps)
     mozRequestAnimationFrame(=>
       @loop()
     , @canvas)
-    @backgroundPos = @backgroundPos - 3
-    $('canvas').css('backgroundPosition', @backgroundPos+'px 100%')
    # $('canvas').css('backgroundColor', '#'+Math.floor(Math.random()*16777215).toString(16))
 
   clear: ->

@@ -25,10 +25,10 @@
       this.draw();
     }
     SoundDetector.prototype.audioAvailable = function(event) {
-      var frameBuffer, timestamp;
-      frameBuffer = event.frameBuffer;
+      var timestamp;
+      this.frameBuffer = event.frameBuffer;
       timestamp = event.time;
-      this.signal = DSP.getChannel(DSP.MIX, frameBuffer);
+      this.signal = DSP.getChannel(DSP.MIX, this.frameBuffer);
       this.fft.forward(this.signal);
       this.bd.process(timestamp, this.fft.spectrum);
       this.ftimer += this.bd.last_update;
@@ -49,7 +49,9 @@
         }
         if ((this.mag > this.lastMag * 3.5) && (+(new Date()) - this.lastSent >= 200)) {
           this.lastSent = +(new Date());
-          this.launchers.push(this.el.currentTime * 1000);
+          if (this.el.currentTime * 1000 > game.energy.screenTime) {
+            this.launchers.push(this.el.currentTime * 1000);
+          }
         }
         this.lastMag = this.mag;
       }
