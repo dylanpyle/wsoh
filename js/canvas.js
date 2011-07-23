@@ -6,6 +6,7 @@
       this.context = this.canvas.getContext('2d');
       this.guy = new Guy();
       this.energy = new Energy();
+      this.sound = new Sound(document.getElementById('sound'));
       this.fps = 0;
       this.keysDown = {};
       this.backgroundPos = 0;
@@ -28,6 +29,7 @@
     Game.prototype.loop = function() {
       this.clear();
       this.guy.loop();
+      this.sound.loop();
       this.energy.loop();
       this.calculateFPS();
       $('title').text(this.fps);
