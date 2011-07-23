@@ -11,10 +11,10 @@
       this.keysDown = {};
       this.backgroundPos = 0;
       this.lastFrame = +(new Date);
-      $('body').keydown(__bind(function(e) {
-        return this.keysDown[e.keyCode + ''] = true;
+      $(document).keydown(__bind(function(e) {
+        return this.keysDown[e.keyCode] = true;
       }, this)).keyup(__bind(function(e) {
-        return this.keysDown[e.keyCode + ''] = false;
+        return this.keysDown[e.keyCode] = false;
       }, this));
       setTimeout(__bind(function() {
         return this.loop();
@@ -36,7 +36,7 @@
       mozRequestAnimationFrame(__bind(function() {
         return this.loop();
       }, this), this.canvas);
-      this.backgroundPos = this.timePos - 3;
+      this.backgroundPos = this.backgroundPos - 3;
       return $('canvas').css('backgroundPosition', this.backgroundPos + 'px 100%');
     };
     Game.prototype.clear = function() {
@@ -44,8 +44,18 @@
       return this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     };
     Game.prototype.updateScore = function(score) {
+      var faceImg;
       $('#score').html(score);
-      return $('#score').width(score * 5);
+      $('#score').width(score * 5);
+      if (score > 80) {
+        faceImg = 8;
+      } else {
+        faceImg = Math.round(score / 10);
+      }
+      return this.guy.src = 'images/face/face_' + faceImg + '.png';
+    };
+    Game.prototype.doBeat = function() {
+      return this.energy.shoot();
     };
     return Game;
   })();

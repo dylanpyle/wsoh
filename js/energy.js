@@ -19,6 +19,9 @@
       _results = [];
       for (id in _ref) {
         item = _ref[id];
+        if (item.x < 0) {
+          delete game.energy.items[id];
+        }
         halfX = item.x + this.width / 2;
         halfY = item.y + this.height / 2;
         item.frameCount++;
