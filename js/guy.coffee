@@ -2,12 +2,21 @@ class window.Guy
   constructor: ->
     @x = 30
     @y = 30
+    @width = 20
+    @height = 80
     @src = 'images/guy.png'
     @energy = 100
 
   loop: ->
     @checkKeys()
+    @detectCollisions()
     @draw()
+  
+  detectCollisions: ->
+    for id, item in game.energy.items
+      if (@x < item.x < @x + @width) and (@y < item.y < @y + @height)
+        @energy -= 5
+        delete game.energy.items[id]
   
   checkKeys: ->
     speed = 15
@@ -19,13 +28,13 @@ class window.Guy
         @y -= speed
 
   draw: ->
-    drawGuy = ->
+    drawGuy = =>
       img = new Image()
       img.src = @src
-      game.context.drawImage(img, @x, @y, 20, 80)
+      game.context.drawImage(img, @x, @y, @width, @height)
     
-    drawEnergy = ->
-      $('title').text("Energy: #{@energy}")
+    drawEnergy = =>
+      $('title').html("Energy: #{@energy}")
 
     drawGuy()
     drawEnergy()

@@ -5,6 +5,7 @@ class window.Game
     @clear()
 
     @guy = new Guy()
+    @energy = new Energy()
 
     @fps = 30
 
@@ -23,6 +24,7 @@ class window.Game
   loop: ->
     @clear()
     @guy.loop()
+    @energy.loop()
 
   clear: ->
     @context.fillStyle = '#222'

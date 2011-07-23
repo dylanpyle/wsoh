@@ -6,6 +6,7 @@
       this.context = this.canvas.getContext('2d');
       this.clear();
       this.guy = new Guy();
+      this.energy = new Energy();
       this.fps = 30;
       this.keysDown = {};
       $('body').keydown(__bind(function(e) {
@@ -19,7 +20,8 @@
     }
     Game.prototype.loop = function() {
       this.clear();
-      return this.guy.loop();
+      this.guy.loop();
+      return this.energy.loop();
     };
     Game.prototype.clear = function() {
       this.context.fillStyle = '#222';
